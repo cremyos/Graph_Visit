@@ -47,8 +47,7 @@ ALGraph* create(ALGraph *G)
 		arc = (ArcNode *)malloc(sizeof(ArcNode));  
 		arc->adjvex = node_pair2+'A';  
 		arc->nextarc=G->vertices[node_pair1].firstarc;  
-		G->vertices[node_pair1].firstarc=arc;
-        
+		G->vertices[node_pair1].firstarc=arc;        
 	}
 	printf("finish the Adjacency List\n");
 	return G;
@@ -71,6 +70,8 @@ void DFS_Visit(ALGraph *G)
 
 int DFS(ALGraph *G,int i)
 {	
+	int w;
+
 	if(G->vertices[i].firstarc==NULL)
 	{
 		if(visit[i]!=1)
@@ -83,11 +84,20 @@ int DFS(ALGraph *G,int i)
 	printf("%c -> ",G->vertices[i].data);
 	visit[i]=1;
 	
-	i = G->vertices[i].firstarc->adjvex-'A';
-	//printf("*** %c ***",G->vertices[i].firstarc->adjvex);
-	if(visit[i]!=1)
-		DFS(G,i);
-	return 1;
+	//for(w=G->vertices[i].firstarc->adjvex-'A';w>=0;w=NextArc(G,i,w))
+	w=NextArc(G,i,w);
+	if(visit[w]!=1)
+		DFS(G,w);
+	return 0;
+}
+
+int NextArc(ALGraph *G,int i,int w)
+{
+	ArcNode *arc;
+	
+	arc=G->vertices[i].firstarc->nextarc;
+	w = arc->adjvex-'A';
+	return w;
 }
 
 int main()
