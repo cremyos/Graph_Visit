@@ -23,7 +23,7 @@ typedef struct ALGraph
 	int kind;
 }ALGraph;
 
-void DFS_Visit(ALGraph *G);
-int DFS(ALGraph *G,int i);
+void DFS_visit(ALGraph *G);
+void DFS(ALGraph *G,int i);
 
 #endif /* __ADJ_LIST_H__*/
