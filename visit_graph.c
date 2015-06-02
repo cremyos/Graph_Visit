@@ -31,7 +31,7 @@ ALGraph* create(ALGraph *G)
 		G->vertices[i].data = 'A'+i;
 		G->vertices[i].firstarc=NULL;
 		/*
-		 *prepare for visit
+		 *prepare for visiting
 		 */
 		visit[i]=0; 
 	}	
@@ -57,6 +57,9 @@ ALGraph* create(ALGraph *G)
 	return G;
 }
 
+/*
+ *DFS visit
+ */
 void DFS_visit(ALGraph *G)
 {
 	int i=0;
@@ -64,7 +67,7 @@ void DFS_visit(ALGraph *G)
 	for(;i<G->vexnum;i++)
 	{
 		if(!visit[i])	
-		DFS(G,i);
+			DFS(G,i);
 	}
 }
 	
@@ -110,9 +113,6 @@ int main()
 		}
 		printf("\n");
 	}
-
-	
-	
 	
 	return 0;
 }
